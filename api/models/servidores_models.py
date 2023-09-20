@@ -12,3 +12,23 @@ class Servidores:
         self.creador = creador
         self.fecha_creacion = fecha_creacion
         self.id_usuario = id_usuario
+        
+    @classmethod
+    def obtener_servidores_de_usuario(cls, usuario_id):
+        query = '''
+        SELECT s.*
+        FROM servidores s
+        JOIN usuario u ON s.usuario_id = u.usuario_id
+        WHERE u.usuario_id = %s
+        '''
+        
+        connection = DatabaseConnection.get_connection()
+        cursor = connection.cursor(dictionary=True)
+        cursor.execute(query, (usuario_id,))
+        servidores = cursor.fetchall()
+        cursor.close()
+        
+        if not servidores:
+            return "El usuario no pertenece a ningún servidor."
+    
+        return servidores
