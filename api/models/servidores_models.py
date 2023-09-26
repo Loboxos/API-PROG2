@@ -34,20 +34,25 @@ class Servidores:
         params = (usuario_id,)
         results = DatabaseConnection.fetch_one(query, params)
         
-        if results is not None:
-            return Servidores(
-                id_servidor=results[0],
-                logo=results[1],
-                nombre=results[2],
-                descripcion=results[3],
-                region=results[4],
-                miembros=results[5],
-                creador=results[6],
-                fecha_creacion=results[7],
+        servidores = []
+        for row in results:
+            servidor = Servidores(
+                id_servidor=row[0],
+                logo=row[1],
+                nombre=row[2],
+                descripcion=row[3],
+                region=row[4],
+                miembros=row[5],
+                creador=row[6],
+                fecha_creacion=row[7],
             )
+        servidores.append(servidor)
+
+        if servidores:
+            return servidores
         else:
-            return "NO HAY SERVIDORES EN ESTA USUARIO"
-        
+            return "NO HAY SERVIDORES PARA ESTE USUARIO"
+            
     @classmethod 
     def crear_servidor(cls, servidor):
         query = '''

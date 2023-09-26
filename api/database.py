@@ -10,8 +10,8 @@ class DatabaseConnection:
                 host='127.0.0.1',
                 user='root',
                 port = "3306",
-                password='martin',
-                database='proyectofinal'
+                password='5528',
+                database='discord'
                 )
         return cls._connection
     

@@ -4,10 +4,11 @@ import mysql.connector
 
 class Canales:
     
-    def __init__(self, id_canal, nombre, id_servidor):
+    def __init__(self, id_canal, nombre, id_servidor, descripcion):
         self.id_canal = id_canal
         self.nombre = nombre
         self.id_servidor = id_servidor
+        self.descripcion = descripcion
         
     @classmethod
     def mostrar_canales(cls, id_servidor):
@@ -15,7 +16,8 @@ class Canales:
         SELECT
         id_canal,
         nombre,
-        id_servidor
+        id_servidor,
+        descripcion
         FROM canales c
         JOIN servidores s ON c.servidor_id = s.servidor_id
         JOIN usuarios u ON s.usuario_id = u.usuario_id
@@ -27,16 +29,17 @@ class Canales:
             return Canales(
                 id_canal=results[0],
                 nombre=results[1],
-                id_servidor=results[2]
+                id_servidor=results[2],
+                descripcion=results[3]
             )
         else:
             return "NO EXISTE EL CANAL"
     
     @classmethod
-    def crear_canal(cls, nombre, id_servidor):
+    def crear_canal(cls, nombre, id_servidor,descripcion):
         query = '''
-        INSERT INTO canales (nombre, id_servidor)
-        VALUES (%s, %s)
+        INSERT INTO canales (nombre, id_servidor, descripcion)
+        VALUES (%s, %s ,%s)
         '''
         values = (nombre, id_servidor)
 
