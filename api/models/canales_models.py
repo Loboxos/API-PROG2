@@ -12,22 +12,25 @@ class Canales:
     @classmethod
     def mostrar_canales(cls, id_servidor):
         query = '''
-        SELECT c.*
+        SELECT
+        id_canal,
+        nombre,
+        id_servidor
         FROM canales c
         JOIN servidores s ON c.servidor_id = s.servidor_id
         JOIN usuarios u ON s.usuario_id = u.usuario_id
         WHERE u.usuario_id = %s AND s.servidor_id = %s
         '''
-        connection = DatabaseConnection.get_connection()
-        cursor = connection.cursor(dictionary=True)
-        cursor.execute(query, id_servidor)
-        canales = cursor.fetchall()
-        cursor.close()
-    
-        if not canales:
-            return "No hay canales asociados a este servidor para este usuario."
-        
-        return canales
+        params = (id_servidor,)
+        results = DatabaseConnection.fetch_one(query, params)
+        if results is not None:
+            return Canales(
+                id_canal=results[0],
+                nombre=results[1],
+                id_servidor=results[2]
+            )
+        else:
+            return "NO EXISTE EL CANAL"
     
     @classmethod
     def crear_canal(cls, nombre, id_servidor):
