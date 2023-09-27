@@ -5,8 +5,6 @@ from .database import DatabaseConnection
 from .routes.discord_bp import discord_bp
 
 
-
-
 def init_app():
     """Crea y configura la aplicación FLask."""
     app = Flask(__name__, static_folder = Config.STATIC_FOLDER, template_folder = Config.TEMPLATE_FOLDER)

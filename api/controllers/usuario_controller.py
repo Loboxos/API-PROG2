@@ -31,7 +31,6 @@ class UsuarioController:
             contraseña=data.get('contraseña'),
             apodo=data.get('apodo')
         )
-        print(usuario)
         Usuario.crear_usuario(usuario)
         return jsonify({}), 201
     
