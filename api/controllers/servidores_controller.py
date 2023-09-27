@@ -6,7 +6,6 @@ class ServidoresController:
     @classmethod 
     def obtener_servidores(self,id_usuario):
         servidores = Servidores.obtener_servidores(id_usuario)
-        print(len(servidores))
         if servidores:
             response = []
 
