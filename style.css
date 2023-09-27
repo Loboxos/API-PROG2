@@ -7,7 +7,7 @@
   border-radius: 50px;
   border-style: solid;
   padding: 90px;
-  box-shadow: 0 20px 20px rgb(17, 0, 0);
+  box-shadow: 0 20px 20px rgb(17, 5, 20);
   text-align: center; 
     
 }
@@ -41,8 +41,8 @@ h3 {
   margin-top: 10%;
   margin-left: 7%;
   margin-bottom: 0%;
-
 }
+
 
 label{
   color: aliceblue;
@@ -128,5 +128,22 @@ img{
 
 #page > footer {
   grid-area: foot;
+
+}
+p{
+  color: rgb(255, 255, 255);
+  font-style: oblique;
+  background-color: #07045d;
+  font-size: 130%;
+}
+.canales{
+  display: grid;
+  width: 20vw;
+  height: 100vh;
+  margin-bottom: 0%;
+  border:double;
+  background-color: #07045d;
+  color: aliceblue;
+  font-size: 300%;
 
 }
