@@ -1,3 +1,4 @@
 env
 readme.md
 requirements.txt
+.env

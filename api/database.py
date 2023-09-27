@@ -2,16 +2,16 @@ import mysql.connector
 
 class DatabaseConnection:
     _connection = None
+    _config = None
     @classmethod
     
     def get_connection(cls):
         if cls._connection is None:
             cls._connection = mysql.connector.connect(
-                host='127.0.0.1',
-                user='root',
-                port = "3306",
-                password='5528',
-                database='discord'
+                host = cls._config['DATABASE_HOST'],
+                user = cls._config['DATABASE_USERNAME'],
+                port = cls._config['DATABASE_PORT'],
+                password = cls._config['DATABASE_PASSWORD']
                 )
         return cls._connection
     

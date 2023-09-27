@@ -15,7 +15,20 @@ class Usuario:
         
     def __str__(self):
         return f"{self.nombre},{self.apellido},{self.email}"
-   
+    
+    
+    @classmethod
+    def is_registered(cls, usuario):
+        query = """SELECT id_usuario FROM usuarios 
+        WHERE email = %s and contraseña = %s"""
+        params = (usuario.email, usuario.contraseña)
+        result = DatabaseConnection.fetch_one(query, params=params)
+
+        if result is not None:
+            return True
+        return False
+    
+    
     @classmethod    
     def crear_usuario(cls, usuario):
         

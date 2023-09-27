@@ -1,8 +1,24 @@
 from ..models.usuario_model import Usuario
-from flask import request, jsonify
+from flask import request, jsonify ,session
 
 class UsuarioController:
     
+    @classmethod
+    def login(cls):
+        data = request.json
+        usuario = Usuario(
+            email = data.get('email'),
+            password = data.get('password')
+        )
+        
+        if Usuario.is_registered(usuario):
+            session['email'] = data.get('email')
+            return {"message": "Sesion iniciada"}, 200
+        else:
+            return {"message": "Usuario o contraseña incorrectos"}, 401
+
+
+
     @classmethod
     def crear_usuario(cls):
         data = request.json
@@ -34,3 +50,4 @@ class UsuarioController:
             return jsonify(response), 200
         else:
             return jsonify({}), 404
+
