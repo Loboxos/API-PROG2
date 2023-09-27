@@ -12,6 +12,7 @@ class Chat:
         
     @classmethod
     def obtener_mensaje(cls, id_canal):
+
         query = '''
         SELECT
         chat.id_chat,
@@ -19,22 +20,29 @@ class Chat:
         chat.mensaje,
         chat.menciones
         FROM chat
-        JOIN canal ON chat.id_canal = canal.id_canal
+        JOIN canales ON chat.id_canal = canales.id_canal
         WHERE
-        canal.id_canal = %s
+        canales.id_canal = %s
         '''
         
         params = (id_canal,)
-        result = DatabaseConnection.fetch_one(query, params)
+        results = DatabaseConnection.fetch_all(query, params)
         
-        if result is not None:
-            return Chat(
-               id_chat = result[0],
-               fecha_mensaje = result[1],
-               mensaje = result[2],
-               menciones = result[3]
-            )
+        print(results)
+        chats = []
+        
+        if results is not None:
+
+            for result in results:
+                chats.append({
+                    "id_chat":result[0],
+                    "fecha_mensaje":result[1],
+                    "mensaje":result[2],
+                    "menciones":result[3]
+                })
+
+            return chats
         else:
-         return "NO HAY MENSAJES EN ESTE CANAL"
+            return "NO HAY MENSAJES EN ESTE CANAL"
      
      

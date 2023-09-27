@@ -42,12 +42,12 @@ class Canales:
             return "NO EXISTEN CANALES EN EL SERVIDOR"
     
     @classmethod
-    def crear_canal(cls, nombre, id_servidor,descripcion):
+    def crear_canal(cls, canal):
         query = '''
         INSERT INTO canales (nombre, id_servidor, descripcion)
         VALUES (%s, %s ,%s)
         '''
-        values = (nombre, id_servidor, descripcion)
+        values = (canal.nombre, canal.id_servidor, canal.descripcion)
 
         connection = DatabaseConnection.get_connection()
         cursor = connection.cursor()

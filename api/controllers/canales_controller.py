@@ -23,11 +23,11 @@ class CanalesController:
     @classmethod  
     def crear_canal(self):
         data = request.json
-        canales = Canales(
+        canal = Canales(
             id_canal = None,
             nombre = data["nombre"],
             id_servidor = data["id_servidor"],
             descripcion = data["descripcion"]
         )
-        Canales.crear_canal(canales)
+        Canales.crear_canal(canal)
         return jsonify({}), 201
