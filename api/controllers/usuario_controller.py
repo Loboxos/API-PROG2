@@ -8,7 +8,7 @@ class UsuarioController:
         data = request.json
         usuario = Usuario(
             email = data.get('email'),
-            password = data.get('password')
+            contraseña = data.get('password')
         )
         
         if Usuario.is_registered(usuario):
@@ -16,8 +16,6 @@ class UsuarioController:
             return {"message": "Sesion iniciada"}, 200
         else:
             return {"message": "Usuario o contraseña incorrectos"}, 401
-
-
 
     @classmethod
     def crear_usuario(cls):
@@ -34,6 +32,27 @@ class UsuarioController:
         Usuario.crear_usuario(usuario)
         return jsonify({}), 201
     
+    @classmethod
+    def show_profile(cls):
+        email = session.get('email')
+        usuario = Usuario.mostrar_usuario(email)
+        if usuario is None:
+            return {"message": "Usuario no encontrado"}, 404
+        else:
+            return {
+                "email": usuario.email,
+                "nombre": usuario.nombre,
+                "apellidos": usuario.apellido,
+                "apodo": usuario.apodo,
+                "avatar":usuario.avatar
+            }, 200 
+    
+    @classmethod
+    def logout(cls):
+        session.pop('email', None)
+        return {"message": "Sesion cerrada"}, 200
+
+
     @classmethod 
     def obtener_usuario(self, id_usuario):
         usuario = Usuario.mostrar_usuario(id_usuario)

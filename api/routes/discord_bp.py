@@ -5,6 +5,12 @@ from ..controllers.servidores_controller import ServidoresController
 from ..controllers.usuario_controller import UsuarioController
 
 discord_bp = Blueprint('discord', __name__)
+
+discord_bp.route('/login', methods=['POST'])(UsuarioController.login)
+discord_bp.route('/logout', methods=['GET'])(UsuarioController.logout)
+discord_bp.route('/perfil', methods=['GET'])(UsuarioController.show_profile)
+
+
 discord_bp.route('/canales/<int:id_servidor>', methods=['GET'])(CanalesController.obtener_canales)
 discord_bp.route('/canales/crear', methods=['POST'])(CanalesController.crear_canal)
 discord_bp.route('/chat/<int:id_canal>', methods=['GET'])(ChatController.obtener_mensaje)

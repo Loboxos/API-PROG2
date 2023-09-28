@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask ,jsonify
 from flask_cors import CORS
 from config import Config
 from .database import DatabaseConnection
@@ -21,7 +21,8 @@ def init_app():
 
     @app.route('/')
     def hello_world():
-        return 'Bienvenidos!'
+        mensaje = {'mensaje': 'Bienvenidos!'}
+        return jsonify(mensaje)
     
     
     
