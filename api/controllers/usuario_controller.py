@@ -40,6 +40,7 @@ class UsuarioController:
             return {"message": "Usuario no encontrado"}, 404
         else:
             return {
+                "id_usuario":usuario.id_usuario,
                 "email": usuario.email,
                 "nombre": usuario.nombre,
                 "apellidos": usuario.apellido,

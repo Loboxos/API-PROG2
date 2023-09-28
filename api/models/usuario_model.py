@@ -52,6 +52,7 @@ class Usuario:
     def mostrar_usuario(cls, email):
         query = '''
         SELECT 
+        id_usuario,
         email,
         nombre,
         apellido,
@@ -65,11 +66,12 @@ class Usuario:
         result = DatabaseConnection.fetch_one(query, params)
         if result is not None:
             return Usuario(
-                email=result[0],
-                nombre=result[1],
-                apellido=result[2],
-                apodo=result[3],
-                avatar=result[4]
+                id_usuario=result[0],
+                email=result[1],
+                nombre=result[2],
+                apellido=result[3],
+                apodo=result[4],
+                avatar=result[5]
             )
         else:
             return None

@@ -51,7 +51,9 @@ class Servidores:
         if servidores:
             return servidores
         else:
-            return "NO HAY SERVIDORES PARA ESTE USUARIO"
+            return []
+            #return "NO HAY SERVIDORES PARA ESTE USUARIO"
+
         
         # for row in results:
         #     servidor = Servidores(

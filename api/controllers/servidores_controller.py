@@ -8,9 +8,10 @@ class ServidoresController:
         servidores = Servidores.obtener_servidores(id_usuario)
         if servidores:
             response = []
-
+            print(servidores)
             for servidor in servidores:
                 data= {
+                    "id_servidor":servidor["id_servidor"],
                     "nombre": servidor["nombre"],
                     "descripcion": servidor["descripcion"],
                     "region": servidor["region"],
@@ -23,7 +24,7 @@ class ServidoresController:
                 response.append(data)
             return jsonify(response), 200
         else:
-            return jsonify({"message": "No se encontraron datos"}), 404
+            return jsonify([],{"message": "No se encontraron datos"}), 404
 
 
     @classmethod 
