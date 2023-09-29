@@ -51,6 +51,7 @@ class UsuarioController:
                 "id_usuario":usuario.id_usuario,
                 "email": usuario.email,
                 "nombre": usuario.nombre,
+                "fecha":usuario.fecha_nacimiento,
                 "apellidos": usuario.apellido,
                 "apodo": usuario.apodo,
                 "avatar":usuario.avatar

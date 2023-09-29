@@ -71,6 +71,7 @@ class Usuario:
         query = '''
         SELECT 
         id_usuario,
+        fecha_nacimiento,
         email,
         nombre,
         apellido,
@@ -85,11 +86,12 @@ class Usuario:
         if result is not None:
             return Usuario(
                 id_usuario=result[0],
-                email=result[1],
-                nombre=result[2],
-                apellido=result[3],
-                apodo=result[4],
-                avatar=result[5]
+                fecha_nacimiento=result[1],
+                email=result[2],
+                nombre=result[3],
+                apellido=result[4],
+                apodo=result[5],
+                avatar=result[6]
             )
         else:
             return None
