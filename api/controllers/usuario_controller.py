@@ -17,6 +17,14 @@ class UsuarioController:
         else:
             return {"message": "Usuario o contraseña incorrectos"}, 401
 
+
+    @classmethod
+    def actualizar_usuario(cls):
+        data = request.json
+        Usuario.actualizar_usuario(data)
+        return jsonify({}),200
+
+
     @classmethod
     def crear_usuario(cls):
         data = request.json

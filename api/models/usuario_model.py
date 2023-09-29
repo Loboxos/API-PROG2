@@ -48,6 +48,24 @@ class Usuario:
             cursor.close()
             return "El usuario ya existe en la base de datos"
     
+
+    @classmethod    
+    def actualizar_usuario(cls, data):
+        print(data)
+        query ='''
+        UPDATE usuarios
+        SET avatar = %s
+        WHERE id_usuario = %s ;
+        '''
+        values = (data['avatar'], data['userId'])
+        connection = DatabaseConnection.get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query, values)
+        connection.commit()
+        cursor.close()
+        return True            
+
+
     @classmethod
     def mostrar_usuario(cls, email):
         query = '''

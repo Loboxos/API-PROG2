@@ -11,6 +11,7 @@ class CanalesController:
             
             for canal in canales:
                 data = {
+                    "id_canal":canal["id_canal"],
                     "nombre": canal["nombre"],
                     "id_servidor": canal["id_servidor"],
                     "descripcion": canal["descripcion"]

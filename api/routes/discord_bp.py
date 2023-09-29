@@ -18,3 +18,4 @@ discord_bp.route('/servidores/<int:id_usuario>', methods=['GET'])(ServidoresCont
 discord_bp.route('/servidores/crear', methods=['POST'])(ServidoresController.crear_servidor)
 discord_bp.route('/usuarios/<int:id_usuario>', methods=['GET'])(UsuarioController.obtener_usuario)
 discord_bp.route('/usuarios/crear', methods=['POST'])(UsuarioController.crear_usuario)
+discord_bp.route('/usuarios/actualizar', methods=['PUT'])(UsuarioController.actualizar_usuario)

@@ -15,14 +15,16 @@ class Chat:
 
         query = '''
         SELECT
-        chat.id_chat,
-        chat.fecha_mensaje,
-        chat.mensaje,
-        chat.menciones
+            chat.id_chat,
+            chat.fecha_mensaje,
+            chat.mensaje,
+            chat.menciones
         FROM chat
         JOIN canales ON chat.id_canal = canales.id_canal
         WHERE
-        canales.id_canal = %s
+            canales.id_canal = %s
+        ORDER BY chat.fecha_mensaje ASC;
+
         '''
         
         params = (id_canal,)
@@ -40,7 +42,7 @@ class Chat:
                     "mensaje":result[2],
                     "menciones":result[3]
                 })
-
+            print(chats)
             return chats
         else:
             return "NO HAY MENSAJES EN ESTE CANAL"
